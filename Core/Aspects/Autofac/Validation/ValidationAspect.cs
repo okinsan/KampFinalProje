@@ -15,6 +15,8 @@ namespace Core.Aspects.Autofac.Validation
         private Type _validatorType;
         public ValidationAspect(Type validatorType)
         {
+            //defensive coding (işi garantiye almak gibi)
+            //burası olmasa da derlenirken hata vermez ama hata runtime da çıkar.
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
                 throw new System.Exception("Bu bir doğrulama sınıfı değil");
