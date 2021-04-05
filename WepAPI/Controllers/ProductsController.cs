@@ -43,6 +43,17 @@ namespace WepAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getproductdetail")]
+        public IActionResult GetProductDetail()
+        {
+            var result = _productService.GetProductDetails();
+            return (result.Success) ? Ok(result) : BadRequest(result);
+        }
+        [HttpGet("getproductcountofeachcategory")]
+        public IActionResult GetProductCountOfEachCategory(int categoryid)
+        {
+            return Ok(_productService.GetAllByCategoryId(categoryid).Data.Count());
+        }
         [HttpPost("add")]
         public IActionResult Add(Product product)
         {
